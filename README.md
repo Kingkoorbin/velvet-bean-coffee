@@ -5,7 +5,7 @@ Features dark/light mode, auto-playing carousel, tabbed menu system, lightbox ga
 scroll animations, and a working contact form.
 
 ## Live Demo
-[View Live Site](https://yourusername.github.io/velvet-bean-coffee)
+[View Live Site](https://kingkoorbin.github.io/velvet-bean-coffee)
 
 ## Features
 - Dark/Light mode toggle with persistence
