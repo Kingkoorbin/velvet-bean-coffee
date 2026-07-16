@@ -1,1967 +1,352 @@
 <!DOCTYPE html>
 <html lang="en" class="lenis lenis-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Velvet Bean Coffee Co. — Artisan coffee, handcrafted with passion since 2015. An immersive editorial coffee experience.">
-<meta name="theme-color" content="#1A120B">
-<title>Velvet Bean Coffee Co. | Artisan Coffee House</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Velvet Bean Coffee Co. — Artisan coffee, handcrafted with passion since 2015. An immersive editorial coffee experience.">
+    <meta name="theme-color" content="#1A120B">
+    <title>Velvet Bean Coffee Co. | Artisan Coffee House</title>
 
-<!-- Google Fonts: High-Contrast Serif & Clean Grotesk -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts: High-Contrast Serif & Clean Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<!-- FontAwesome Icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-<!-- Lenis Smooth Scroll CSS -->
-<link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css">
-
-<style>
-/* ==========================================
-   1. EDITORIAL BRAND SYSTEM & VARIABLES
-   ========================================== */
-:root {
-    --bg-primary: #1A120B;      /* Near-black espresso brown */
-    --bg-secondary: #241811;    /* Slightly lifted panel tone */
-    --text-primary: #F5EDE4;    /* Warm cream */
-    --text-muted: #B8A794;      /* Soft taupe for labels/secondary */
-    --accent-hero: #C97C4F;     /* Burnt caramel / Terracotta CTA pop */
-    --accent-secondary: #E8C9A0;/* Pale latte for hover highlights */
-    --border-subtle: rgba(232, 201, 160, 0.12);
-    --border-strong: rgba(232, 201, 160, 0.25);
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    --font-display: 'Playfair Display', serif;
-    --font-body: 'Inter', sans-serif;
+    <!-- Lenis Smooth Scroll CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css">
     
-    --space-unit: 8px;
-    --radius-sm: 4px;
-    --radius-md: 12px;
-    --radius-lg: 20px;
-    --radius-pill: 100px;
-    
-    --transition-fast: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    --transition-base: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    --transition-slow: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-html {
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    font-family: var(--font-body);
-    font-size: 16px;
-    -webkit-font-smoothing: antialiased;
-}
-
-body {
-    overflow-x: hidden;
-    background: var(--bg-primary);
-    selection-background-color: var(--accent-hero);
-}
-
-::selection {
-    background: var(--accent-hero);
-    color: #ffffff;
-}
-
-/* Custom Editorial Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--bg-primary); }
-::-webkit-scrollbar-thumb { background: var(--bg-secondary); border-radius: 3px; border: 1px solid var(--border-subtle); }
-::-webkit-scrollbar-thumb:hover { background: var(--accent-hero); }
-
-/* Typography Scale */
-h1, h2, h3, h4, .font-display {
-    font-family: var(--font-display);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: var(--text-primary);
-}
-
-.eyebrow {
-    font-family: var(--font-body);
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--accent-secondary);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-}
-
-.eyebrow::before {
-    content: '';
-    width: 24px;
-    height: 1px;
-    background: var(--accent-hero);
-}
-
-/* ==========================================
-   2. CURTAIN LOADER (PAGE INTRO)
-   ========================================== */
-.loader {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100vh;
-    background: var(--bg-primary);
-    z-index: 10000;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-}
-
-.loader-brand {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 700;
-    color: var(--text-primary);
-    opacity: 0;
-    transform: translateY(20px);
-}
-
-.loader-brand em { font-style: italic; color: var(--accent-hero); font-weight: 400; }
-
-.loader-progress-wrap {
-    width: 180px;
-    height: 2px;
-    background: var(--border-subtle);
-    margin-top: 1.5rem;
-    overflow: hidden;
-    position: relative;
-    opacity: 0;
-}
-
-.loader-progress-bar {
-    position: absolute;
-    top: 0; left: 0;
-    height: 100%; width: 0%;
-    background: var(--accent-hero);
-}
-
-/* ==========================================
-   3. NAVIGATION
-   ========================================== */
-nav {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    padding: 2rem 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1000;
-    transition: padding var(--transition-base), background var(--transition-base), backdrop-filter var(--transition-base), border-color var(--transition-base);
-    border-bottom: 1px solid transparent;
-}
-
-nav.scrolled {
-    padding: 1rem 5%;
-    background: rgba(26, 18, 11, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border-subtle);
-}
-
-.logo {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    letter-spacing: -0.03em;
-}
-
-.logo i { color: var(--accent-hero); font-size: 1.25rem; transition: transform var(--transition-base); }
-.logo:hover i { transform: rotate(-15deg) scale(1.1); }
-
-.nav-links {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-    align-items: center;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: var(--text-muted);
-    font-size: 0.875rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    transition: color var(--transition-fast);
-    position: relative;
-    padding: 0.5rem 0;
-}
-
-.nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
-
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0;
-    width: 0%; height: 1px;
-    background: var(--accent-hero);
-    transition: width var(--transition-base);
-}
-
-.nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
-
-/* Magnetic CTA Button Styling */
-.btn-magnetic {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.875rem 2rem;
-    border-radius: var(--radius-pill);
-    font-size: 0.875rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    text-decoration: none;
-    cursor: pointer;
-    position: relative;
-    border: none;
-    outline: none;
-    transition: background var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-base), border-color var(--transition-fast);
-    will-change: transform;
-}
-
-.btn-primary {
-    background: var(--accent-hero);
-    color: #ffffff !important;
-    box-shadow: 0 4px 20px rgba(201, 124, 79, 0.25);
-}
-
-.btn-primary:hover {
-    background: #d88958;
-    box-shadow: 0 8px 30px rgba(201, 124, 79, 0.4);
-}
-
-.btn-primary::after { display: none !important; }
-
-.btn-outline {
-    background: transparent;
-    color: var(--text-primary) !important;
-    border: 1px solid var(--border-strong);
-}
-
-.btn-outline:hover {
-    border-color: var(--accent-secondary);
-    background: rgba(232, 201, 160, 0.05);
-}
-
-.mobile-menu-btn {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--text-primary);
-    font-size: 1.5rem;
-    cursor: pointer;
-    z-index: 1001;
-}
-
-/* ==========================================
-   4. ASYMMETRIC HERO SECTION
-   ========================================== */
-.hero {
-    min-height: 100vh;
-    width: 100%;
-    padding: 140px 5% 80px;
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    align-items: center;
-    gap: 4rem;
-    position: relative;
-    overflow: hidden;
-}
-
-.hero-content { z-index: 2; }
-
-.hero-title {
-    font-size: clamp(3.25rem, 7.5vw, 6.5rem);
-    line-height: 0.96;
-    margin-bottom: 2rem;
-    font-weight: 700;
-}
-
-.hero-title em {
-    font-style: italic;
-    font-weight: 400;
-    color: var(--accent-secondary);
-    display: block;
-}
-
-.hero-desc {
-    font-size: clamp(1rem, 1.5vw, 1.25rem);
-    color: var(--text-muted);
-    line-height: 1.6;
-    max-width: 520px;
-    margin-bottom: 2.5rem;
-    font-weight: 300;
-}
-
-.hero-actions {
-    display: flex;
-    gap: 1.25rem;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.hero-visual {
-    position: relative;
-    height: 75vh;
-    max-height: 700px;
-    width: 100%;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
-    border: 1px solid var(--border-subtle);
-}
-
-.hero-visual-img {
-    width: 100%;
-    height: 120%;
-    object-fit: cover;
-    object-position: center;
-    will-change: transform;
-}
-
-.hero-badge-floating {
-    position: absolute;
-    bottom: 2rem;
-    left: -2rem;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-strong);
-    padding: 1.25rem 1.75rem;
-    border-radius: var(--radius-md);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-    z-index: 3;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    backdrop-filter: blur(10px);
-}
-
-.hero-badge-floating i { font-size: 1.75rem; color: var(--accent-hero); }
-.hero-badge-floating strong { display: block; font-size: 0.95rem; color: var(--text-primary); font-weight: 600; }
-.hero-badge-floating span { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
-
-.scroll-cue {
-    position: absolute;
-    bottom: 2rem;
-    left: 5%;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    color: var(--text-muted);
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-}
-
-.scroll-cue-line {
-    width: 40px;
-    height: 1px;
-    background: var(--text-muted);
-    position: relative;
-    overflow: hidden;
-}
-
-.scroll-cue-line::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: var(--accent-hero);
-    animation: scrollLine 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
-}
-
-@keyframes scrollLine {
-    0% { transform: translateX(-100%); }
-    50%, 100% { transform: translateX(100%); }
-}
-
-/* ==========================================
-   5. PROCESS / FEATURES BAR
-   ========================================== */
-.features-section {
-    padding: 80px 5%;
-    background: var(--bg-secondary);
-    border-top: 1px solid var(--border-subtle);
-    border-bottom: 1px solid var(--border-subtle);
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 3rem;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.feature-item {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    border-left: 1px solid var(--border-subtle);
-    padding-left: 1.5rem;
-    transition: border-color var(--transition-base);
-}
-
-.feature-item:hover { border-left-color: var(--accent-hero); }
-
-.feature-icon {
-    font-size: 1.5rem;
-    color: var(--accent-secondary);
-}
-
-.feature-item h4 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-}
-
-.feature-item p {
-    font-size: 0.875rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-}
-
-/* ==========================================
-   6. ABOUT / STORY (STICKY EDITORIAL LAYOUT)
-   ========================================== */
-.about-section {
-    padding: 160px 5%;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.about-grid {
-    display: grid;
-    grid-template-columns: 5fr 7fr;
-    gap: 6rem;
-    align-items: start;
-}
-
-.about-sticky-panel {
-    position: sticky;
-    top: 140px;
-}
-
-.about-title {
-    font-size: clamp(2.5rem, 4.5vw, 4rem);
-    line-height: 1.05;
-    margin-bottom: 2rem;
-}
-
-.about-text p {
-    font-size: 1.05rem;
-    color: var(--text-muted);
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
-}
-
-.about-text p strong { color: var(--text-primary); font-weight: 600; }
-
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-top: 3rem;
-    padding-top: 2.5rem;
-    border-top: 1px solid var(--border-subtle);
-}
-
-.stat-number {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 3.5vw, 3rem);
-    font-weight: 700;
-    color: var(--accent-hero);
-    line-height: 1;
-    margin-bottom: 0.5rem;
-}
-
-.stat-label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-muted);
-    font-weight: 500;
-}
-
-.about-visual-stack {
-    display: flex;
-    flex-direction: column;
-    gap: 6rem;
-}
-
-.editorial-card {
-    position: relative;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-subtle);
-}
-
-.editorial-card-img-wrap {
-    width: 100%;
-    height: 550px;
-    overflow: hidden;
-    position: relative;
-}
-
-.editorial-card img {
-    width: 100%;
-    height: 120%;
-    object-fit: cover;
-    will-change: transform;
-}
-
-.editorial-card-caption {
-    padding: 1.5rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: var(--bg-secondary);
-    border-top: 1px solid var(--border-subtle);
-}
-
-.editorial-card-caption span {
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    font-weight: 600;
-}
-
-.editorial-card-caption small {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--accent-secondary);
-}
-
-/* ==========================================
-   7. MENU SHOWCASE
-   ========================================== */
-.menu-section {
-    padding: 160px 5%;
-    background: var(--bg-secondary);
-    border-top: 1px solid var(--border-subtle);
-    border-bottom: 1px solid var(--border-subtle);
-}
-
-.section-header-center {
-    text-align: center;
-    max-width: 700px;
-    margin: 0 auto 5rem;
-}
-
-.section-header-center h2 {
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
-    line-height: 1.05;
-    margin-bottom: 1.5rem;
-}
-
-.section-header-center p {
-    color: var(--text-muted);
-    font-size: 1.1rem;
-    line-height: 1.7;
-}
-
-.menu-tabs {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 4rem;
-    flex-wrap: wrap;
-}
-
-.menu-tab {
-    padding: 0.75rem 1.75rem;
-    border: 1px solid var(--border-strong);
-    background: transparent;
-    border-radius: var(--radius-pill);
-    cursor: pointer;
-    font-family: var(--font-body);
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--text-muted);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    transition: all var(--transition-fast);
-}
-
-.menu-tab:hover {
-    border-color: var(--accent-secondary);
-    color: var(--text-primary);
-}
-
-.menu-tab.active {
-    background: var(--accent-hero);
-    color: #ffffff;
-    border-color: var(--accent-hero);
-    box-shadow: 0 4px 20px rgba(201, 124, 79, 0.3);
-}
-
-.menu-content { display: none; }
-.menu-content.active {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-    gap: 2.5rem;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.menu-card {
-    background: var(--bg-primary);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
-}
-
-.menu-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--accent-secondary);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-}
-
-.menu-card-img {
-    height: 260px;
-    overflow: hidden;
-    position: relative;
-}
-
-.menu-card-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.menu-card:hover .menu-card-img img { transform: scale(1.08); }
-
-.menu-badge {
-    position: absolute;
-    top: 1rem; right: 1rem;
-    background: rgba(26, 18, 11, 0.85);
-    backdrop-filter: blur(8px);
-    border: 1px solid var(--border-strong);
-    color: var(--accent-secondary);
-    padding: 0.35rem 0.85rem;
-    border-radius: var(--radius-pill);
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-}
-
-.menu-card-info {
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-
-.menu-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 1rem;
-    gap: 1rem;
-}
-
-.menu-card-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    transition: color var(--transition-fast);
-}
-
-.menu-card:hover .menu-card-title { color: var(--accent-secondary); }
-
-.menu-card-price {
-    font-family: var(--font-display);
-    font-size: 1.35rem;
-    font-weight: 700;
-    color: var(--accent-hero);
-}
-
-.menu-card-desc {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    line-height: 1.7;
-    margin-bottom: 2rem;
-    flex: 1;
-}
-
-.menu-card-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 1.25rem;
-    border-top: 1px solid var(--border-subtle);
-}
-
-.menu-tags { display: flex; gap: 0.5rem; }
-.tag {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--text-muted);
-    padding: 0.3rem 0.75rem;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-sm);
-}
-
-.btn-add {
-    width: 42px; height: 42px;
-    border-radius: 50%;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-strong);
-    color: var(--text-primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all var(--transition-fast);
-}
-
-.btn-add:hover {
-    background: var(--accent-hero);
-    border-color: var(--accent-hero);
-    color: #ffffff;
-    transform: scale(1.08) rotate(90deg);
-}
-
-/* ==========================================
-   8. TESTIMONIALS
-   ========================================== */
-.testimonials-section {
-    padding: 160px 5%;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem;
-}
-
-.testimonial-card {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-subtle);
-    padding: 3rem 2.5rem;
-    border-radius: var(--radius-lg);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-    transition: border-color var(--transition-base);
-}
-
-.testimonial-card:hover { border-color: var(--border-strong); }
-
-.stars { color: #F5A623; font-size: 0.85rem; margin-bottom: 1.5rem; display: flex; gap: 0.25rem; }
-
-.testimonial-text {
-    font-size: 1.05rem;
-    color: var(--text-primary);
-    line-height: 1.8;
-    margin-bottom: 2.5rem;
-    font-style: italic;
-    font-family: var(--font-display);
-}
-
-.author { display: flex; align-items: center; gap: 1rem; }
-.author img {
-    width: 48px; height: 48px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 1px solid var(--accent-hero);
-}
-.author strong { display: block; font-size: 0.95rem; font-weight: 600; color: var(--text-primary); }
-.author span { font-size: 0.8rem; color: var(--text-muted); }
-
-/* ==========================================
-   9. GALLERY GRID
-   ========================================== */
-.gallery-section {
-    padding: 0 5% 160px;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: 280px;
-    gap: 1.5rem;
-}
-
-.gallery-item {
-    position: relative;
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    cursor: pointer;
-    border: 1px solid var(--border-subtle);
-}
-
-.gallery-item.wide { grid-column: span 2; }
-.gallery-item.tall { grid-row: span 2; }
-
-.gallery-item img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.gallery-item:hover img { transform: scale(1.1); }
-
-.gallery-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(26, 18, 11, 0.9) 0%, transparent 60%);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 2rem;
-    opacity: 0;
-    transition: opacity var(--transition-base);
-}
-
-.gallery-item:hover .gallery-overlay { opacity: 1; }
-.gallery-overlay span { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; color: var(--text-primary); }
-.gallery-overlay small { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-secondary); margin-top: 0.25rem; }
-
-/* ==========================================
-   10. CONTACT & NEWSLETTER
-   ========================================== */
-.contact-section {
-    padding: 160px 5%;
-    background: var(--bg-secondary);
-    border-top: 1px solid var(--border-subtle);
-}
-
-.contact-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6rem;
-}
-
-.contact-info h2 {
-    font-size: clamp(2.5rem, 4.5vw, 4rem);
-    line-height: 1.05;
-    margin-bottom: 1.5rem;
-}
-
-.contact-info > p {
-    color: var(--text-muted);
-    font-size: 1.05rem;
-    line-height: 1.8;
-    margin-bottom: 3rem;
-}
-
-.contact-details { display: flex; flex-direction: column; gap: 2rem; }
-.contact-item { display: flex; gap: 1.5rem; align-items: flex-start; }
-.contact-item i {
-    width: 48px; height: 48px;
-    border-radius: var(--radius-sm);
-    background: rgba(232, 201, 160, 0.05);
-    border: 1px solid var(--border-strong);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--accent-hero);
-    font-size: 1.25rem;
-    flex-shrink: 0;
-}
-
-.contact-item strong { display: block; font-size: 0.95rem; color: var(--text-primary); margin-bottom: 0.25rem; }
-.contact-item span { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
-
-.contact-form {
-    background: var(--bg-primary);
-    padding: 3.5rem;
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--border-subtle);
-}
-
-.form-group { margin-bottom: 1.75rem; }
-.form-group label {
-    display: block;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--text-muted);
-    margin-bottom: 0.75rem;
-    font-weight: 600;
-}
-
-.form-group input, .form-group select, .form-group textarea {
-    width: 100%;
-    padding: 1rem 1.25rem;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-sm);
-    color: var(--text-primary);
-    font-family: var(--font-body);
-    font-size: 0.95rem;
-    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-    outline: none;
-    border-color: var(--accent-hero);
-    box-shadow: 0 0 0 3px rgba(201, 124, 79, 0.15);
-}
-
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-.form-group textarea { min-height: 140px; resize: vertical; }
-
-.newsletter-box {
-    margin: 120px auto 0;
-    max-width: 800px;
-    text-align: center;
-    padding: 4rem;
-    background: var(--bg-primary);
-    border: 1px solid var(--border-strong);
-    border-radius: var(--radius-lg);
-}
-
-.newsletter-box h3 { font-size: 2.25rem; margin-bottom: 1rem; }
-.newsletter-box p { color: var(--text-muted); margin-bottom: 2rem; }
-
-.newsletter-form {
-    display: flex;
-    gap: 1rem;
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-.newsletter-form input {
-    flex: 1;
-    padding: 1rem 1.5rem;
-    border-radius: var(--radius-pill);
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-subtle);
-    color: var(--text-primary);
-    font-family: var(--font-body);
-}
-
-.newsletter-form input:focus { outline: none; border-color: var(--accent-hero); }
-
-/* ==========================================
-   11. FOOTER
-   ========================================== */
-footer {
-    padding: 100px 5% 40px;
-    background: #120c08;
-    border-top: 1px solid var(--border-subtle);
-}
-
-.footer-grid {
-    max-width: 1400px;
-    margin: 0 auto 6rem;
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 4rem;
-}
-
-.footer-brand p {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    line-height: 1.7;
-    margin: 1.5rem 0 2rem;
-    max-width: 340px;
-}
-
-.social-links { display: flex; gap: 1rem; }
-.social-links a {
-    width: 42px; height: 42px;
-    border-radius: 50%;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-subtle);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-primary);
-    text-decoration: none;
-    transition: all var(--transition-fast);
-}
-
-.social-links a:hover {
-    background: var(--accent-hero);
-    border-color: var(--accent-hero);
-    transform: translateY(-3px);
-}
-
-.footer-col h4 { font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-secondary); margin-bottom: 1.5rem; font-family: var(--font-body); }
-.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
-.footer-col ul a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; transition: color var(--transition-fast); }
-.footer-col ul a:hover { color: var(--text-primary); }
-
-.footer-bottom {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding-top: 2.5rem;
-    border-top: 1px solid rgba(255,255,255,0.05);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: rgba(184, 167, 148, 0.5);
-    font-size: 0.85rem;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.footer-bottom-links { display: flex; gap: 2rem; }
-.footer-bottom-links a { color: inherit; text-decoration: none; }
-.footer-bottom-links a:hover { color: var(--text-primary); }
-
-/* ==========================================
-   12. UI OVERLAYS (TOAST & LIGHTBOX)
-   ========================================== */
-.toast-container {
-    position: fixed;
-    bottom: 2rem; right: 2rem;
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-}
-
-.toast {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-strong);
-    color: var(--text-primary);
-    padding: 1rem 1.5rem;
-    border-radius: var(--radius-md);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
-    border-left: 4px solid var(--accent-hero);
-    transform: translateX(120%);
-    opacity: 0;
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.toast.show { transform: translateX(0); opacity: 1; }
-.toast i { color: var(--accent-hero); font-size: 1.1rem; }
-
-.lightbox {
-    position: fixed;
-    inset: 0;
-    background: rgba(18, 12, 8, 0.95);
-    z-index: 10001;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: all var(--transition-base);
-    padding: 2rem;
-    backdrop-filter: blur(10px);
-}
-
-.lightbox.active { opacity: 1; visibility: visible; }
-.lightbox img { max-width: 90%; max-height: 85vh; border-radius: var(--radius-md); box-shadow: 0 30px 80px rgba(0,0,0,0.8); transform: scale(0.95); transition: transform var(--transition-base); }
-.lightbox.active img { transform: scale(1); }
-
-.lightbox-close {
-    position: absolute;
-    top: 2rem; right: 2rem;
-    width: 48px; height: 48px;
-    border-radius: 50%;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-strong);
-    color: var(--text-primary);
-    font-size: 1.25rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all var(--transition-fast);
-}
-
-.lightbox-close:hover { background: var(--accent-hero); border-color: var(--accent-hero); transform: rotate(90deg); }
-
-/* ==========================================
-   13. RESPONSIVE BREAKPOINTS & REDUCED MOTION
-   ========================================== */
-@media (max-width: 1024px) {
-    .hero { grid-template-columns: 1fr; padding-top: 120px; gap: 3rem; }
-    .hero-visual { height: 50vh; }
-    .about-grid { grid-template-columns: 1fr; gap: 4rem; }
-    .about-sticky-panel { position: relative; top: 0; }
-    .features-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-    .testimonials-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-    .contact-container { grid-template-columns: 1fr; gap: 4rem; }
-    .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 3rem; }
-    .hero-badge-floating { left: 1rem; bottom: 1rem; }
-}
-
-@media (max-width: 768px) {
-    nav { padding: 1.25rem 5%; }
-    .nav-links {
-        display: none;
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100vh;
-        background: var(--bg-primary);
-        flex-direction: column;
-        justify-content: center;
-        gap: 2rem;
-        z-index: 1000;
-        padding: 2rem;
-    }
-    .nav-links.active { display: flex; }
-    .nav-links a { font-size: 1.5rem; }
-    .mobile-menu-btn { display: block; }
-    
-    .hero-title { font-size: clamp(2.75rem, 10vw, 4rem); }
-    .section-header-center h2, .about-title, .contact-info h2 { font-size: clamp(2rem, 8vw, 3rem); }
-    .features-grid, .gallery-grid, .form-row { grid-template-columns: 1fr; }
-    .gallery-item.wide, .gallery-item.tall { grid-column: span 1; grid-row: span 1; }
-    .contact-form { padding: 2rem 1.5rem; }
-    .newsletter-box { padding: 2.5rem 1.5rem; }
-    .newsletter-form { flex-direction: column; }
-    .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    .footer-bottom { flex-direction: column; text-align: center; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    *, ::before, ::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-    }
-    .hero-visual-img, .editorial-card img, .menu-card-img img, .gallery-item img {
-        transform: none !important;
-    }
-}
-</style>
+    <!-- Custom Editorial Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<!-- 1. EDITORIAL CURTAIN LOADER -->
-<div class="loader" id="loader">
-    <div class="loader-brand">Velvet <em>Bean</em></div>
-    <div class="loader-progress-wrap">
-        <div class="loader-progress-bar" id="loaderProgress"></div>
-    </div>
-</div>
+    <!-- Custom Editorial Cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"><span id="cursorText"></span></div>
 
-<!-- 2. TOAST & LIGHTBOX OVERLAYS -->
-<div class="toast-container" id="toastContainer"></div>
-<div class="lightbox" id="lightbox">
-    <button class="lightbox-close" id="lightboxClose" aria-label="Close modal"><i class="fas fa-times"></i></button>
-    <img src="" alt="Gallery Preview" id="lightboxImg">
-</div>
-
-<!-- 3. NAVIGATION -->
-<nav id="navbar">
-    <a href="#home" class="logo">
-        <i class="fas fa-mug-hot"></i>
-        <span>Velvet Bean</span>
-    </a>
-    <ul class="nav-links" id="navLinks">
-        <li><a href="#home" class="active">Home</a></li>
-        <li><a href="#about">Story</a></li>
-        <li><a href="#menu">Menu</a></li>
-        <li><a href="#gallery">Atmosphere</a></li>
-        <li><a href="#contact">Visit</a></li>
-        <li style="margin-top: 1rem;"><a href="#contact" class="btn-magnetic btn-primary" style="padding: 0.75rem 1.75rem; font-size: 0.8rem;">Book a Table</a></li>
-    </ul>
-    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Navigation">
-        <i class="fas fa-bars"></i>
-    </button>
-</nav>
-
-<!-- 4. HERO SECTION (ASYMMETRIC EDITORIAL) -->
-<section class="hero" id="home">
-    <div class="hero-content">
-        <div class="eyebrow gsap-reveal">Small Batch · Roasted Weekly</div>
-        <h1 class="hero-title gsap-reveal">
-            Limitless
-            <em>Crafted</em>
-            Passion.
-        </h1>
-        <p class="hero-desc gsap-reveal">
-            Artisan coffee, handcrafted pastries, and a warm, architectural community space in Portland where meaningful conversation begins.
-        </p>
-        <div class="hero-actions gsap-reveal">
-            <a href="#menu" class="btn-magnetic btn-primary">Explore The Menu</a>
-            <a href="#about" class="btn-magnetic btn-outline">Our Philosophy</a>
+    <!-- Dynamic Percentage Preloader -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-brand">Velvet <em>Bean</em></div>
+            <div class="loader-counter"><span id="loaderCount">00</span>%</div>
+        </div>
+        <div class="loader-progress-wrap">
+            <div class="loader-progress-bar" id="loaderProgress"></div>
         </div>
     </div>
-    
-    <div class="hero-visual gsap-reveal">
-        <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=1600&q=85" alt="Artisan coffee pour" class="hero-visual-img parallax-img" data-speed="0.15">
-        <div class="hero-badge-floating">
-            <i class="fas fa-award"></i>
-            <div>
-                <strong>Est. 2015</strong>
-                <span>Portland's Finest</span>
+
+    <!-- Toast & Lightbox Overlays -->
+    <div class="toast-container" id="toastContainer"></div>
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close btn-magnetic" id="lightboxClose" aria-label="Close modal"><i class="fas fa-times"></i></button>
+        <img src="" alt="Gallery Preview" id="lightboxImg">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#home" class="logo" data-cursor="link">
+            <i class="fas fa-mug-hot"></i>
+            <span>Velvet Bean</span>
+        </a>
+        <div class="nav-center">
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="active" data-cursor="link">Home</a></li>
+                <li><a href="#about" data-cursor="link">Story</a></li>
+                <li><a href="#menu" data-cursor="link">Menu</a></li>
+                <li><a href="#gallery" data-cursor="link">Atmosphere</a></li>
+                <li><a href="#contact" data-cursor="link">Visit</a></li>
+            </ul>
+        </div>
+        <div class="nav-right">
+            <button class="ambient-toggle btn-magnetic" id="ambientBtn" aria-label="Toggle ambient soundwave" data-cursor="link">
+                <div class="sound-bars"><span></span><span></span><span></span></div>
+                <span class="ambient-text">Vibes: On</span>
+            </button>
+            <a href="#contact" class="btn-magnetic btn-primary nav-cta" data-cursor="link">Book a Table</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="eyebrow gsap-reveal">Small Batch · Roasted Weekly</div>
+            <h1 class="hero-title gsap-reveal">
+                Limitless
+                <em>Crafted</em>
+                Passion.
+            </h1>
+            <p class="hero-desc gsap-reveal">
+                Artisan coffee, handcrafted pastries, and a warm, architectural community space in Portland where meaningful conversation begins.
+            </p>
+            <div class="hero-actions gsap-reveal">
+                <a href="#menu" class="btn-magnetic btn-primary" data-cursor="link">Explore The Menu</a>
+                <a href="#about" class="btn-magnetic btn-outline" data-cursor="link">Our Philosophy</a>
             </div>
         </div>
-    </div>
-    
-    <div class="scroll-cue">
-        <span>Scroll To Explore</span>
-        <div class="scroll-cue-line"></div>
-    </div>
-</section>
-
-<!-- 5. PROCESS FEATURES BAR -->
-<section class="features-section">
-    <div class="features-grid">
-        <div class="feature-item gsap-reveal">
-            <i class="fas fa-seedling feature-icon"></i>
-            <h4>Direct Trade Beans</h4>
-            <p>Sourced ethically from high-altitude sustainable farms across Ethiopia and Colombia.</p>
-        </div>
-        <div class="feature-item gsap-reveal">
-            <i class="fas fa-fire feature-icon"></i>
-            <h4>Small Batch Roast</h4>
-            <p>Roasted on-site in small 15kg drums to develop peak sweetness and aromatic clarity.</p>
-        </div>
-        <div class="feature-item gsap-reveal">
-            <i class="fas fa-leaf feature-icon"></i>
-            <h4>Organic Dairy & Alt</h4>
-            <p>Partnering with regional Oregon creameries for pure, certified organic milk and oat blends.</p>
-        </div>
-        <div class="feature-item gsap-reveal">
-            <i class="fas fa-heart feature-icon"></i>
-            <h4>Architectural Space</h4>
-            <p>Designed for focus, comfort, and human connection without the rush of commercial chains.</p>
-        </div>
-    </div>
-</section>
-
-<!-- 6. STORY / ABOUT (STICKY EDITORIAL GRID) -->
-<section class="about-section" id="about">
-    <div class="about-grid">
-        <div class="about-sticky-panel gsap-reveal">
-            <div class="eyebrow">Our Philosophy</div>
-            <h2 class="about-title">Brewed With Heart Since 2015.</h2>
-            <div class="about-text">
-                <p>Founded by two coffee obsessives in a 400-square-foot espresso bar, Velvet Bean was born from a singular belief: <strong>coffee is not a transactional caffeine delivery system—it is a daily sensory ritual.</strong></p>
-                <p>We approach coffee like wine. We obsess over soil terroir, fermentation methods, and water chemistry to ensure that every shot pulled honors the labor of the farmers who grew it.</p>
+        
+        <div class="hero-visual gsap-reveal">
+            <div class="img-overflow-mask">
+                <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1600&q=80" alt="Artisan espresso extraction" class="hero-visual-img parallax-img" data-speed="0.18">
             </div>
-            <div class="stats-grid">
+            <div class="hero-badge-floating" data-cursor="hover">
+                <i class="fas fa-award"></i>
                 <div>
-                    <div class="stat-number" data-target="8">0</div>
-                    <div class="stat-label">Years of Craft</div>
-                </div>
-                <div>
-                    <div class="stat-number" data-target="15">0</div>
-                    <div class="stat-label">Origin Partners</div>
-                </div>
-                <div>
-                    <div class="stat-number" data-target="98">0</div>
-                    <div class="stat-label">Cup Score Avg</div>
+                    <strong>Est. 2015</strong>
+                    <span>Portland's Finest</span>
                 </div>
             </div>
         </div>
         
-        <div class="about-visual-stack">
-            <div class="editorial-card gsap-reveal">
-                <div class="editorial-card-img-wrap">
-                    <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=1000&q=80" alt="Roasting drums" class="parallax-img" data-speed="0.1">
-                </div>
-                <div class="editorial-card-caption">
-                    <span>The Roastery</span>
-                    <small>Portland, Oregon</small>
-                </div>
-            </div>
-            <div class="editorial-card gsap-reveal">
-                <div class="editorial-card-img-wrap">
-                    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=1000&q=80" alt="Barista pouring latte art" class="parallax-img" data-speed="0.1">
-                </div>
-                <div class="editorial-card-caption">
-                    <span>Precision Extraction</span>
-                    <small>9 Bar Pressure</small>
-                </div>
-            </div>
-            <div class="editorial-card gsap-reveal">
-                <div class="editorial-card-img-wrap">
-                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1000&q=80" alt="Single origin beans" class="parallax-img" data-speed="0.1">
-                </div>
-                <div class="editorial-card-caption">
-                    <span>Ethiopian Yirgacheffe</span>
-                    <small>Heirloom Varietals</small>
-                </div>
-            </div>
+        <div class="scroll-cue">
+            <span>Scroll To Explore</span>
+            <div class="scroll-cue-line"></div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- 7. MENU SHOWCASE -->
-<section class="menu-section" id="menu">
-    <div class="section-header-center gsap-reveal">
-        <div class="eyebrow" style="justify-content: center;">Curated Offerings</div>
-        <h2>Handcrafted With Care</h2>
-        <p>Every beverage and pastry is prepared fresh to order using ingredients sourced for absolute excellence.</p>
-    </div>
-    
-    <div class="menu-tabs gsap-reveal">
-        <button class="menu-tab active" data-tab="coffee"><i class="fas fa-coffee" style="margin-right: 0.5rem;"></i>Coffee</button>
-        <button class="menu-tab" data-tab="tea"><i class="fas fa-leaf" style="margin-right: 0.5rem;"></i>Tea & Botanical</button>
-        <button class="menu-tab" data-tab="cold"><i class="fas fa-glass-water" style="margin-right: 0.5rem;"></i>Cold Brew & Iced</button>
-        <button class="menu-tab" data-tab="pastry"><i class="fas fa-cookie-bite" style="margin-right: 0.5rem;"></i>Bakery</button>
-        <button class="menu-tab" data-tab="brunch"><i class="fas fa-utensils" style="margin-right: 0.5rem;"></i>Brunch</button>
-    </div>
-    
-    <!-- Coffee Tab -->
-    <div class="menu-content active" id="coffee">
-        <div class="menu-card gsap-reveal">
-            <div class="menu-card-img">
-                <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=600&q=80" alt="Velvet Espresso" loading="lazy">
-                <span class="menu-badge">Signature</span>
+    <!-- Infinite Typography Marquee -->
+    <div class="marquee-section">
+        <div class="marquee-track">
+            <div class="marquee-content">
+                <span>ROASTED IN PORTLAND</span> <span class="dot">·</span>
+                <span>ETHICALLY SOURCED</span> <span class="dot">·</span>
+                <span>ARTISAN EXTRACTION</span> <span class="dot">·</span>
+                <span>SINGLE ORIGIN HEIRLOOM</span> <span class="dot">·</span>
+                <span>ARCHITECTURAL SANCTUARY</span> <span class="dot">·</span>
             </div>
-            <div class="menu-card-info">
-                <div class="menu-card-header"><h4 class="menu-card-title">Velvet Espresso</h4><span class="menu-card-price">$4.00</span></div>
-                <p class="menu-card-desc">Our flagship double shot. Thick, syrupy body with tasting notes of 85% dark chocolate, toasted hazelnut, and black cherry.</p>
-                <div class="menu-card-footer">
-                    <div class="menu-tags"><span class="tag">Bold</span><span class="tag">Traditional</span></div>
-                    <button class="btn-add" onclick="addToOrder('Velvet Espresso')" aria-label="Add to order"><i class="fas fa-plus"></i></button>
-                </div>
-            </div>
-        </div>
-        <div class="menu-card gsap-reveal">
-            <div class="menu-card-img">
-                <img src="https://images.unsplash.com/photo-1570968992193-fd6dcba1da5e?w=600&q=80" alt="Honey Lavender Latte" loading="lazy">
-                <span class="menu-badge">Best Seller</span>
-            </div>
-            <div class="menu-card-info">
-                <div class="menu-card-header"><h4 class="menu-card-title">Honey Lavender Latte</h4><span class="menu-card-price">$6.25</span></div>
-                <p class="menu-card-desc">Smooth espresso combined with velvety steamed oat milk, raw high-desert Oregon honey, and house-infused culinary lavender.</p>
-                <div class="menu-card-footer">
-                    <div class="menu-tags"><span class="tag">Floral</span><span class="tag">Comfort</span></div>
-                    <button class="btn-add" onclick="addToOrder('Honey Lavender Latte')" aria-label="Add to order"><i class="fas fa-plus"></i></button>
-                </div>
-            </div>
-        </div>
-        <div class="menu-card gsap-reveal">
-            <div class="menu-card-img">
-                <img src="https://images.unsplash.com/photo-1551030173-122aabc4489c?w=600&q=80" alt="Pour Over" loading="lazy">
-            </div>
-            <div class="menu-card-info">
-                <div class="menu-card-header"><h4 class="menu-card-title">Single Origin V60</h4><span class="menu-card-price">$5.50</span></div>
-                <p class="menu-card-desc">Hand-poured filter coffee highlighting seasonal lots. Currently serving: Gesha Village, Ethiopia. Notes of jasmine and peach.</p>
-                <div class="menu-card-footer">
-                    <div class="menu-tags"><span class="tag">Bright</span><span class="tag">Artisan</span></div>
-                    <button class="btn-add" onclick="addToOrder('Single Origin V60')" aria-label="Add to order"><i class="fas fa-plus"></i></button>
-                </div>
-            </div>
-        </div>
-        <div class="menu-card gsap-reveal">
-            <div class="menu-card-img">
-                <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=600&q=80" alt="Classic Cappuccino" loading="lazy">
-            </div>
-            <div class="menu-card-info">
-                <div class="menu-card-header"><h4 class="menu-card-title">Classic Cappuccino</h4><span class="menu-card-price">$4.75</span></div>
-                <p class="menu-card-desc">A strict 6-ounce traditional cappuccino. Equal parts espresso, steamed milk, and rich, glossy microfoam.</p>
-                <div class="menu-card-footer">
-                    <div class="menu-tags"><span class="tag">Creamy</span><span class="tag">Balanced</span></div>
-                    <button class="btn-add" onclick="addToOrder('Classic Cappuccino')" aria-label="Add to order"><i class="fas fa-plus"></i></button>
-                </div>
-            </div>
-        </div>
-        <div class="menu-card gsap-reveal">
-            <div class="menu-card-img">
-                <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600&q=80" alt="Dark Chocolate Mocha" loading="lazy">
-            </div>
-            <div class="menu-card-info">
-                <div class="menu-card-header"><h4 class="menu-card-title">Valrhona Mocha</h4><span class="menu-card-price">$6.00</span></div>
-                <p class="menu-card-desc">Double espresso melted directly into 70% Valrhona dark chocolate ganache, finished with steamed whole milk and cocoa dust.</p>
-                <div class="menu-card-footer">
-                    <div class="menu-tags"><span class="tag">Indulgent</span><span class="tag">Rich</span></div>
-                    <button class="btn-add" onclick="addToOrder('Valrhona Mocha')" aria-label="Add to order"><i class="fas fa-plus"></i></button>
-                </div>
-            </div>
-        </div>
-        <div class="menu-card gsap-reveal">
-            <div class="menu-card-img">
-                <img src="https://images.unsplash.com/photo-1517701604599-bb29b5dd7359?w=600&q=80" alt="Americano" loading="lazy">
-            </div>
-            <div class="menu-card-info">
-                <div class="menu-card-header"><h4 class="menu-card-title">Velvet Americano</h4><span class="menu-card-price">$4.25</span></div>
-                <p class="menu-card-desc">Double espresso pulled over hot filtered water, preserving the golden crema for a clean, full-bodied cup without bitterness.</p>
-                <div class="menu-card-footer">
-                    <div class="menu-tags"><span class="tag">Classic</span><span class="tag">Smooth</span></div>
-                    <button class="btn-add" onclick="addToOrder('Velvet Americano')" aria-label="Add to order"><i class="fas fa-plus"></i></button>
-                </div>
+            <div class="marquee-content" aria-hidden="true">
+                <span>ROASTED IN PORTLAND</span> <span class="dot">·</span>
+                <span>ETHICALLY SOURCED</span> <span class="dot">·</span>
+                <span>ARTISAN EXTRACTION</span> <span class="dot">·</span>
+                <span>SINGLE ORIGIN HEIRLOOM</span> <span class="dot">·</span>
+                <span>ARCHITECTURAL SANCTUARY</span> <span class="dot">·</span>
             </div>
         </div>
     </div>
-    
-    <!-- Tea Tab -->
-    <div class="menu-content" id="tea">
-        <div class="menu-card">
-            <div class="menu-card-img"><img src="https://images.unsplash.com/photo-1597481499750-3e6b22637e12?w=600&q=80" alt="Matcha" loading="lazy"><span class="menu-badge">Ceremonial</span></div>
-            <div class="menu-card-info">
-                <div class="menu-card-header"><h4 class="menu-card-title">Uji Matcha Latte</h4><span class="menu-card-price">$6.00</span></div>
-                <p class="menu-card-desc">First-harvest ceremonial grade matcha from Uji, Japan, hand-whisked in a chawan and served over steamed macadamia milk.</p>
-                <div class="menu-card-footer"><div class="menu-tags"><span class="tag">Vibrant</span><span class="tag">Antioxidants</span></div><button class="btn-add" onclick="addToOrder('Uji Matcha Latte')"><i class="fas fa-plus"></i></button></div>
-            </div>
-        </div>
-        <div class="menu-card">
-            <div class="menu-card-img"><img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=600&q=80" alt="Chai" loading="lazy"></div>
-            <div class="menu-card-info">
-                <div class="menu-card-header"><h4 class="menu-card-title">Masala Chai</h4><span class="menu-card-price">$5.50</span></div>
-                <p class="menu-card-desc">Our proprietary 24-hour steeped chai concentrate featuring organic Assam black tea, cracked cardamom, ginger, and star anise.</p>
-                <div class="menu-card-footer"><div class="menu-tags"><span class="tag">Spiced</span><span class="tag">Cozy</span></div><button class="btn-add" onclick="addToOrder('Masala Chai')"><i class="fas fa-plus"></i></button></div>
-            </div>
-        </div>
-        <div class="menu-card">
-            <div class="menu-card-img"><img src="https://images.unsplash.com/photo-1594631252845-29fc4cc4cde9?w=600&q=80" alt="Earl Grey" loading="lazy"></div>
-            <div class="menu-card-info">
-                <div class="menu-card-header"><h4 class="menu-card-title">London Fog</h4><span class="menu-card-price">$5.25</span></div>
-                <p class="menu-card-desc">Organic Earl Grey infused with Italian bergamot oil, sweetened with house vanilla bean syrup and topped with silky milk foam.</p>
-                <div class="menu-card-footer"><div class="menu-tags"><span class="tag">Bergamot</span><span class="tag">Classic</span></div><button class="btn-add" onclick="addToOrder('London Fog')"><i class="fas fa-plus"></i></button></div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Cold Drinks Tab -->
-    <div class="menu-content" id="cold">
-        <div class="menu-card">
-            <div class="menu-card-img"><img src="https://images.unsplash.com/photo-1517701604599-bb29b5dd7359?w=600&q=80" alt="Nitro Cold Brew" loading="lazy"><span class="menu-badge">On Tap</span></div>
-            <div class="menu-card-info">
-                <div class="menu-card-header"><h4 class="menu-card-title">Nitro Cold Brew</h4><span class="menu-card-price">$5.50</span></div>
-                <p class="menu-card-desc">Single-origin Colombian beans cold-steeped for 20 hours and infused with pure nitrogen for a cascading, stout-like texture.</p>
-                <div class="menu-card-footer"><div class="menu-tags"><span class="tag">Draft</span><span class="tag">Creamy</span></div><button class="btn-add" onclick="addToOrder('Nitro Cold Brew')"><i class="fas fa-plus"></i></button></div>
-            </div>
-        </div>
-        <div class="menu-card">
-            <div class="menu-card-img"><img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600&q=80" alt="Iced Latte" loading="lazy"></div>
-            <div class="menu-card-info">
-                <div class="menu-card-header"><h4 class="menu-card-title">Iced Salted Caramel</h4><span class="menu-card-price">$6.00</span></div>
-                <p class="menu-card-desc">Double espresso poured over crystal clear ice with house-crafted burnt sugar caramel and a pinch of Maldon flaky sea salt.</p>
-                <div class="menu-card-footer"><div class="menu-tags"><span class="tag">Sweet</span><span class="tag">Iced</span></div><button class="btn-add" onclick="addToOrder('Iced Salted Caramel')"><i class="fas fa-plus"></i></button></div>
-            </div>
-        </div>
-        <div class="menu-card">
-            <div class="menu-card-img"><img src="https://images.unsplash.com/photo-1546173159-315724a31696?w=600&q=80" alt="Yuzu Lemonade" loading="lazy"></div>
-            <div class="menu-card-info">
-                <div class="menu-card-header"><h4 class="menu-card-title">Sparkling Yuzu Fizz</h4><span class="menu-card-price">$5.00</span></div>
-                <p class="menu-card-desc">Japanese citrus purée combined with sparkling mineral water, fresh rosemary sprig, and Meyer lemon juice. Highly refreshing.</p>
-                <div class="menu-card-footer"><div class="menu-tags"><span class="tag">Botanical</span><span class="tag">Zero Caffeine</span></div><button class="btn-add" onclick="addToOrder('Sparkling Yuzu Fizz')"><i class="fas fa-plus"></i></button></div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Pastry Tab -->
-    <div class="menu-content" id="pastry">
-        <div class="menu-card">
-            <div class="menu-card-img"><img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=600&q=80" alt="Croissant" loading="lazy"><span class="menu-badge">5 AM Bake</span></div>
-            <div class="menu-card-info">
-                <div class="menu-card-header"><h4 class="menu-card-title">French Butter Croissant</h4><span class="menu-card-price">$4.50</span></div>
-                <p class="menu-card-desc">Three-day laminated dough made exclusively with AOP Isigny French butter. Crispy, shattered exterior with a delicate honeycomb crumb.</p>
-                <div class="menu-card-footer"><div class="menu-tags"><span class="tag">Flaky</span><span class="tag">Classic</span></div><button class="btn-add" onclick="addToOrder('French Butter Croissant')"><i class="fas fa-plus"></i></button></div>
-            </div>
-        </div>
-        <div class="menu-card">
-            <div class="menu-card-img"><img src="https://images.unsplash.com/photo-1483695028939-5bb13f8648b0?w=600&q=80" alt="Cinnamon Roll" loading="lazy"></div>
-            <div class="menu-card-info">
-                <div class="menu-card-header"><h4 class="menu-card-title">Cardamom Bun</h4><span class="menu-card-price">$5.00</span></div>
-                <p class="menu-card-desc">Traditional Scandinavian twisted knot bread spiced with freshly ground green cardamom pods and topped with pearl sugar.</p>
-                <div class="menu-card-footer"><div class="menu-tags"><span class="tag">Nordic</span><span class="tag">Spiced</span></div><button class="btn-add" onclick="addToOrder('Cardamom Bun')"><i class="fas fa-plus"></i></button></div>
-            </div>
-        </div>
-        <div class="menu-card">
-            <div class="menu-card-img"><img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=600&q=80" alt="Cookie" loading="lazy"></div>
-            <div class="menu-card-info">
-                <div class="menu-card-header"><h4 class="menu-card-title">Brown Butter Chocolate Chip</h4><span class="menu-card-price">$4.00</span></div>
-                <p class="menu-card-desc">Nutty brown butter cookie dough studded with bittersweet chocolate fèves and finished with Maldon sea salt. Served warm.</p>
-                <div class="menu-card-footer"><div class="menu-tags"><span class="tag">Warm</span><span class="tag">Sweet</span></div><button class="btn-add" onclick="addToOrder('Brown Butter Chocolate Chip')"><i class="fas fa-plus"></i></button></div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Brunch Tab -->
-    <div class="menu-content" id="brunch">
-        <div class="menu-card">
-            <div class="menu-card-img"><img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?w=600&q=80" alt="Avocado Toast" loading="lazy"></div>
-            <div class="menu-card-info">
-                <div class="menu-card-header"><h4 class="menu-card-title">Heirloom Avocado Toast</h4><span class="menu-card-price">$12.00</span></div>
-                <p class="menu-card-desc">Thick-cut country sourdough, smashed organic Hass avocado, pickled shallots, heirloom cherry tomatoes, and dukkah spice crunch.</p>
-                <div class="menu-card-footer"><div class="menu-tags"><span class="tag">Vegan</span><span class="tag">Savory</span></div><button class="btn-add" onclick="addToOrder('Heirloom Avocado Toast')"><i class="fas fa-plus"></i></button></div>
-            </div>
-        </div>
-        <div class="menu-card">
-            <div class="menu-card-img"><img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=600&q=80" alt="Pancakes" loading="lazy"></div>
-            <div class="menu-card-info">
-                <div class="menu-card-header"><h4 class="menu-card-title">Ricotta Hotcakes</h4><span class="menu-card-price">$14.00</span></div>
-                <p class="menu-card-desc">Cloud-like whipped ricotta pancakes served with seasonal Pacific Northwest berry compote and Grade A dark amber maple syrup.</p>
-                <div class="menu-card-footer"><div class="menu-tags"><span class="tag">Sweet</span><span class="tag">Weekend</span></div><button class="btn-add" onclick="addToOrder('Ricotta Hotcakes')"><i class="fas fa-plus"></i></button></div>
-            </div>
-        </div>
-    </div>
-</section>
 
-<!-- 8. TESTIMONIALS -->
-<section class="testimonials-section">
-    <div class="section-header-center gsap-reveal">
-        <div class="eyebrow" style="justify-content: center;">Community Voices</div>
-        <h2>What Our Guests Say</h2>
-    </div>
-    <div class="testimonials-grid">
-        <div class="testimonial-card gsap-reveal">
-            <div>
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p class="testimonial-text">"The Honey Lavender Latte is divine. I drive 20 minutes across town every morning just for this cup. The architectural lighting makes it my favorite workspace."</p>
+    <!-- Process Features Bar -->
+    <section class="features-section">
+        <div class="features-grid">
+            <div class="feature-item gsap-reveal">
+                <i class="fas fa-seedling feature-icon"></i>
+                <h4>Direct Trade Beans</h4>
+                <p>Sourced ethically from high-altitude sustainable farms across Ethiopia and Colombia.</p>
             </div>
-            <div class="author">
-                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&q=80" alt="Sarah Mitchell">
-                <div><strong>Sarah Mitchell</strong><span>Architectural Designer</span></div>
+            <div class="feature-item gsap-reveal">
+                <i class="fas fa-fire feature-icon"></i>
+                <h4>Small Batch Roast</h4>
+                <p>Roasted on-site in small 15kg drums to develop peak sweetness and aromatic clarity.</p>
             </div>
-        </div>
-        <div class="testimonial-card gsap-reveal">
-            <div>
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p class="testimonial-text">"As someone who works in specialty coffee, Velvet Bean pulls the most consistent, syrupy espresso shots in Portland. Their single-origin V60 menu is unmatched."</p>
+            <div class="feature-item gsap-reveal">
+                <i class="fas fa-leaf feature-icon"></i>
+                <h4>Organic Dairy & Alt</h4>
+                <p>Partnering with regional Oregon creameries for pure, certified organic milk and oat blends.</p>
             </div>
-            <div class="author">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80" alt="James Kim">
-                <div><strong>James Kim</strong><span>Coffee Roaster</span></div>
+            <div class="feature-item gsap-reveal">
+                <i class="fas fa-heart feature-icon"></i>
+                <h4>Architectural Space</h4>
+                <p>Designed for focus, comfort, and human connection without the rush of commercial chains.</p>
             </div>
         </div>
-        <div class="testimonial-card gsap-reveal">
-            <div>
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p class="testimonial-text">"The atmosphere is pure warmth. It feels like a boutique hotel lobby met a world-class European café. Their pastry laminated dough is breathtaking."</p>
-            </div>
-            <div class="author">
-                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&q=80" alt="Emma Rodriguez">
-                <div><strong>Emma Rodriguez</strong><span>Food Writer</span></div>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
 
-<!-- 9. GALLERY GRID -->
-<section class="gallery-section" id="gallery">
-    <div class="section-header-center gsap-reveal" style="margin-bottom: 3rem;">
-        <div class="eyebrow" style="justify-content: center;">Atmosphere</div>
-        <h2>Inside The Sanctuary</h2>
-    </div>
-    <div class="gallery-grid gsap-reveal">
-        <div class="gallery-item wide" data-src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1400&q=85">
-            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&q=80" alt="Interior lounge">
-            <div class="gallery-overlay"><span>The Main Lounge</span><small>Architectural Seating</small></div>
-        </div>
-        <div class="gallery-item tall" data-src="https://images.unsplash.com/photo-1507133750069-69d3cdad863a?w=1000&q=85">
-            <img src="https://images.unsplash.com/photo-1507133750069-69d3cdad863a?w=600&q=80" alt="Barista pulling shot">
-            <div class="gallery-overlay"><span>Master Extraction</span><small>Slayer Espresso</small></div>
-        </div>
-        <div class="gallery-item" data-src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1000&q=85">
-            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80" alt="Roasting beans">
-            <div class="gallery-overlay"><span>Small Batch Drum</span><small>Probat Roaster</small></div>
-        </div>
-        <div class="gallery-item" data-src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=1000&q=85">
-            <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=600&q=80" alt="Pour over setup">
-            <div class="gallery-overlay"><span>Morning Ritual</span><small>Quiet Corners</small></div>
-        </div>
-        <div class="gallery-item wide" data-src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=1400&q=85">
-            <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=800&q=80" alt="Evening ambiance">
-            <div class="gallery-overlay"><span>Evening Warmth</span><small>Community Events</small></div>
-        </div>
-    </div>
-</section>
-
-<!-- 10. CONTACT & NEWSLETTER -->
-<section class="contact-section" id="contact">
-    <div class="contact-container">
-        <div class="contact-info gsap-reveal">
-            <div class="eyebrow">Visit The Sanctuary</div>
-            <h2>We Welcome Your Presence.</h2>
-            <p>Whether you are looking for a focused morning workspace, a collaborative afternoon meeting spot, or a private evening catering consultation, our team is at your service.</p>
+    <!-- Story / About Section -->
+    <section class="about-section" id="about">
+        <div class="about-grid">
+            <div class="about-sticky-panel gsap-reveal">
+                <div class="eyebrow">Our Philosophy</div>
+                <h2 class="about-title">Brewed With Heart Since 2015.</h2>
+                <div class="about-text">
+                    <p>Founded by two coffee obsessives in a 400-square-foot espresso bar, Velvet Bean was born from a singular belief: <strong>coffee is not a transactional caffeine delivery system—it is a daily sensory ritual.</strong></p>
+                    <p>We approach coffee like wine. We obsess over soil terroir, fermentation methods, and water chemistry to ensure that every shot pulled honors the labor of the farmers who grew it.</p>
+                </div>
+                <div class="stats-grid">
+                    <div>
+                        <div class="stat-number" data-target="8">0</div>
+                        <div class="stat-label">Years of Craft</div>
+                    </div>
+                    <div>
+                        <div class="stat-number" data-target="15">0</div>
+                        <div class="stat-label">Origin Partners</div>
+                    </div>
+                    <div>
+                        <div class="stat-number" data-target="98">0</div>
+                        <div class="stat-label">Cup Score Avg</div>
+                    </div>
+                </div>
+            </div>
             
-            <div class="contact-details">
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div><strong>Location</strong><span>142 Artisan Lane, Pearl District<br>Portland, OR 97201</span></div>
+            <div class="about-visual-stack" id="aboutCardsContainer">
+                <!-- Dynamically populated by data.js & app.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Showcase Section -->
+    <section class="menu-section" id="menu">
+        <div class="section-header-center gsap-reveal">
+            <div class="eyebrow" style="justify-content: center;">Curated Offerings</div>
+            <h2>Handcrafted With Care</h2>
+            <p>Every beverage and pastry is prepared fresh to order using ingredients sourced for absolute excellence.</p>
+        </div>
+        
+        <div class="menu-tabs gsap-reveal" id="menuTabs">
+            <button class="menu-tab active btn-magnetic" data-tab="coffee" data-cursor="link"><i class="fas fa-coffee"></i>Coffee</button>
+            <button class="menu-tab btn-magnetic" data-tab="tea" data-cursor="link"><i class="fas fa-leaf"></i>Tea & Botanical</button>
+            <button class="menu-tab btn-magnetic" data-tab="cold" data-cursor="link"><i class="fas fa-glass-water"></i>Cold Brew & Iced</button>
+            <button class="menu-tab btn-magnetic" data-tab="pastry" data-cursor="link"><i class="fas fa-cookie-bite"></i>Bakery</button>
+            <button class="menu-tab btn-magnetic" data-tab="brunch" data-cursor="link"><i class="fas fa-utensils"></i>Brunch</button>
+        </div>
+        
+        <div class="menu-grid" id="menuGrid">
+            <!-- Dynamically populated by data.js & app.js -->
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="section-header-center gsap-reveal">
+            <div class="eyebrow" style="justify-content: center;">Community Voices</div>
+            <h2>What Our Guests Say</h2>
+        </div>
+        <div class="testimonials-grid" id="testimonialsGrid">
+            <!-- Dynamically populated by data.js & app.js -->
+        </div>
+    </section>
+
+    <!-- Atmosphere Gallery Section -->
+    <section class="gallery-section" id="gallery">
+        <div class="section-header-center gsap-reveal" style="margin-bottom: 4rem;">
+            <div class="eyebrow" style="justify-content: center;">Atmosphere</div>
+            <h2>Inside The Sanctuary</h2>
+        </div>
+        <div class="gallery-grid gsap-reveal" id="galleryGrid">
+            <!-- Dynamically populated by data.js & app.js -->
+        </div>
+    </section>
+
+    <!-- Visit & Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <div class="contact-info gsap-reveal">
+                <div class="eyebrow">Visit The Sanctuary</div>
+                <h2>We Welcome Your Presence.</h2>
+                <p>Whether you are looking for a focused morning workspace, a collaborative afternoon meeting spot, or a private evening catering consultation, our team is at your service.</p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div><strong>Location</strong><span>142 Artisan Lane, Pearl District<br>Portland, OR 97201</span></div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div><strong>Hours of Hospitality</strong><span>Mon – Fri: 6:00 AM – 8:00 PM<br>Sat – Sun: 7:00 AM – 9:00 PM</span></div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div><strong>Direct Line</strong><span>(503) 555-0192</span></div>
+                    </div>
                 </div>
-                <div class="contact-item">
-                    <i class="fas fa-clock"></i>
-                    <div><strong>Hours of Hospitality</strong><span>Mon – Fri: 6:00 AM – 8:00 PM<br>Sat – Sun: 7:00 AM – 9:00 PM</span></div>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <div><strong>Direct Line</strong><span>(503) 555-0192</span></div>
-                </div>
+            </div>
+            
+            <div class="contact-form gsap-reveal">
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group"><label for="name">Your Name</label><input type="text" id="name" placeholder="John Doe" required></div>
+                        <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" placeholder="john@example.com" required></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Inquiry Type</label>
+                        <select id="subject" required>
+                            <option value="">Select a topic...</option>
+                            <option value="reservation">Table Reservation</option>
+                            <option value="events">Private Event / Catering</option>
+                            <option value="wholesale">Wholesale Bean Partnership</option>
+                            <option value="other">General Hospitality Inquiry</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label for="message">Message</label><textarea id="message" placeholder="How may we assist you?" required></textarea></div>
+                    <button type="submit" class="btn-magnetic btn-primary" style="width: 100%; padding: 1.25rem;" data-cursor="link">Send Inquiry</button>
+                </form>
             </div>
         </div>
         
-        <div class="contact-form gsap-reveal">
-            <form id="contactForm">
-                <div class="form-row">
-                    <div class="form-group"><label for="name">Your Name</label><input type="text" id="name" placeholder="John Doe" required></div>
-                    <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" placeholder="john@example.com" required></div>
-                </div>
-                <div class="form-group">
-                    <label for="subject">Inquiry Type</label>
-                    <select id="subject" required>
-                        <option value="">Select a topic...</option>
-                        <option value="reservation">Table Reservation</option>
-                        <option value="events">Private Event / Catering</option>
-                        <option value="wholesale">Wholesale Bean Partnership</option>
-                        <option value="other">General Hospitality Inquiry</option>
-                    </select>
-                </div>
-                <div class="form-group"><label for="message">Message</label><textarea id="message" placeholder="How may we assist you?" required></textarea></div>
-                <button type="submit" class="btn-magnetic btn-primary" style="width: 100%; padding: 1.25rem;">Send Inquiry</button>
+        <div class="newsletter-box gsap-reveal">
+            <div class="eyebrow" style="justify-content: center;">The Journal</div>
+            <h3>Join The Velvet Bean Club</h3>
+            <p>Receive monthly dispatches on rare single-origin releases, barista brewing guides, and exclusive invitations to evening cupping events.</p>
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="email" id="newsletterEmail" placeholder="Enter your email address" required>
+                <button type="submit" class="btn-magnetic btn-primary" style="padding: 1rem 2.5rem;" data-cursor="link">Subscribe</button>
             </form>
         </div>
-    </div>
-    
-    <div class="newsletter-box gsap-reveal">
-        <div class="eyebrow" style="justify-content: center;">The Journal</div>
-        <h3>Join The Velvet Bean Club</h3>
-        <p>Receive monthly dispatches on rare single-origin releases, barista brewing guides, and exclusive invitations to evening cupping events.</p>
-        <form class="newsletter-form" id="newsletterForm">
-            <input type="email" id="newsletterEmail" placeholder="Enter your email address" required>
-            <button type="submit" class="btn-magnetic btn-primary" style="padding: 1rem 2.5rem;">Subscribe</button>
-        </form>
-    </div>
-</section>
+    </section>
 
-<!-- 11. FOOTER -->
-<footer>
-    <div class="footer-grid">
-        <div class="footer-brand">
-            <a href="#home" class="logo"><i class="fas fa-mug-hot"></i><span>Velvet Bean</span></a>
-            <p>An artisan coffee roastery and architectural community space in Portland, Oregon. Crafted with caffeine, dedication, and heart since 2015.</p>
-            <div class="social-links">
-                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="#" aria-label="Spotify Playlist"><i class="fab fa-spotify"></i></a>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#home" class="logo" data-cursor="link"><i class="fas fa-mug-hot"></i><span>Velvet Bean</span></a>
+                <p>An artisan coffee roastery and architectural community space in Portland, Oregon. Crafted with caffeine, dedication, and heart since 2015.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Instagram" data-cursor="link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook" data-cursor="link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter" data-cursor="link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Spotify Playlist" data-cursor="link"><i class="fab fa-spotify"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="#home" data-cursor="link">Home</a></li>
+                    <li><a href="#about" data-cursor="link">Philosophy</a></li>
+                    <li><a href="#menu" data-cursor="link">Menu Offerings</a></li>
+                    <li><a href="#gallery" data-cursor="link">Atmosphere</a></li>
+                    <li><a href="#contact" data-cursor="link">Visit Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Offerings</h4>
+                <ul>
+                    <li><a href="#" data-cursor="link">Wholesale Beans</a></li>
+                    <li><a href="#" data-cursor="link">Private Events & Catering</a></li>
+                    <li><a href="#" data-cursor="link">Public Cupping Classes</a></li>
+                    <li><a href="#" data-cursor="link">Office Coffee Programs</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Sanctuary</h4>
+                <ul>
+                    <li><a href="#contact" data-cursor="link">Contact Hospitality</a></li>
+                    <li><a href="#" data-cursor="link">Careers & Barista Training</a></li>
+                    <li><a href="#" data-cursor="link">Sustainability Report</a></li>
+                    <li><a href="#" data-cursor="link">Press Kit</a></li>
+                </ul>
             </div>
         </div>
-        <div class="footer-col">
-            <h4>Navigation</h4>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">Philosophy</a></li>
-                <li><a href="#menu">Menu Offerings</a></li>
-                <li><a href="#gallery">Atmosphere</a></li>
-                <li><a href="#contact">Visit Us</a></li>
-            </ul>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Velvet Bean Coffee Co. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#" data-cursor="link">Privacy Policy</a>
+                <a href="#" data-cursor="link">Terms of Hospitality</a>
+                <a href="#" data-cursor="link">Accessibility Statement</a>
+            </div>
         </div>
-        <div class="footer-col">
-            <h4>Offerings</h4>
-            <ul>
-                <li><a href="#">Wholesale Beans</a></li>
-                <li><a href="#">Private Events & Catering</a></li>
-                <li><a href="#">Public Cupping Classes</a></li>
-                <li><a href="#">Office Coffee Programs</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h4>Sanctuary</h4>
-            <ul>
-                <li><a href="#contact">Contact Hospitality</a></li>
-                <li><a href="#">Careers & Barista Training</a></li>
-                <li><a href="#">Sustainability Report</a></li>
-                <li><a href="#">Press Kit</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>&copy; 2026 Velvet Bean Coffee Co. All rights reserved.</p>
-        <div class="footer-bottom-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Hospitality</a>
-            <a href="#">Accessibility Statement</a>
-        </div>
-    </div>
-</footer>
+    </footer>
 
-<!-- CDN: Lenis & GSAP + ScrollTrigger -->
-<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-<script>
-/* =========================================================================
-   VELVET BEAN EDITORIAL ENGINE (GSAP + LENIS + VANILLA UI)
-   ========================================================================= */
-
-// Check for reduced motion preference
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-// 1. INITIALIZE LENIS SMOOTH SCROLLING
-let lenis;
-if (!prefersReducedMotion && typeof Lenis !== 'undefined') {
-    lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        orientation: 'vertical',
-        gestureOrientation: 'vertical',
-        smoothWheel: true,
-        wheelMultiplier: 1,
-        touchMultiplier: 2
-    });
-
-    // Synchronize Lenis scroll with GSAP ScrollTrigger
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add((time) => { lenis.raf(time * 1000); });
-    gsap.ticker.lagSmoothing(0, 0);
-}
-
-// 2. PAGE LOAD CURTAIN SEQUENCE
-window.addEventListener('load', () => {
-    const loader = document.getElementById('loader');
-    const loaderProgress = document.getElementById('loaderProgress');
+    <!-- CDN Dependencies -->
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     
-    if (prefersReducedMotion) {
-        loader.style.display = 'none';
-        return;
-    }
-
-    const tl = gsap.timeline();
-    
-    tl.to('.loader-brand', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' })
-      .to('.loader-progress-wrap', { opacity: 1, duration: 0.3 }, '-=0.3')
-      .to(loaderProgress, { width: '100%', duration: 0.8, ease: 'power2.inOut' })
-      .to(loader, { yPercent: -100, duration: 0.8, ease: 'power4.inOut', delay: 0.2 })
-      .from('.hero-title, .hero-desc, .hero-actions, .eyebrow', { 
-          y: 40, opacity: 0, duration: 1, stagger: 0.15, ease: 'power3.out' 
-      }, '-=0.4')
-      .from('.hero-visual', { 
-          scale: 0.95, opacity: 0, duration: 1.2, ease: 'power3.out' 
-      }, '-=0.8');
-});
-
-// 3. GSAP SCROLL REVEALS & PARALLAX CHOREOGRAPHY
-if (!prefersReducedMotion && typeof gsap !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Staggered Section Reveals
-    const revealElements = gsap.utils.toArray('.gsap-reveal');
-    revealElements.forEach((el) => {
-        gsap.from(el, {
-            scrollTrigger: {
-                trigger: el,
-                start: 'top 85%',
-                toggleActions: 'play none none none'
-            },
-            y: 35,
-            opacity: 0,
-            duration: 0.9,
-            ease: 'power3.out'
-        });
-    });
-
-    // Parallax Image Panels (Scrubbed to Scroll)
-    const parallaxImages = gsap.utils.toArray('.parallax-img');
-    parallaxImages.forEach((img) => {
-        const speed = parseFloat(img.getAttribute('data-speed')) || 0.15;
-        gsap.fromTo(img, {
-            yPercent: -10
-        }, {
-            yPercent: 10,
-            ease: 'none',
-            scrollTrigger: {
-                trigger: img.parentElement,
-                start: 'top bottom',
-                end: 'bottom top',
-                scrub: true
-            }
-        });
-    });
-}
-
-// 4. MAGNETIC CTA BUTTON PHYSICS
-if (!prefersReducedMotion && window.matchMedia('(pointer: fine)').matches) {
-    const magneticButtons = document.querySelectorAll('.btn-magnetic');
-    
-    magneticButtons.forEach((btn) => {
-        const xTo = gsap.quickTo(btn, 'x', { duration: 0.4, ease: 'power3.out' });
-        const yTo = gsap.quickTo(btn, 'y', { duration: 0.4, ease: 'power3.out' });
-
-        btn.addEventListener('mousemove', (e) => {
-            const rect = btn.getBoundingClientRect();
-            const x = (e.clientX - (rect.left + rect.width / 2)) * 0.35;
-            const y = (e.clientY - (rect.top + rect.height / 2)) * 0.35;
-            xTo(x);
-            yTo(y);
-        });
-
-        btn.addEventListener('mouseleave', () => {
-            xTo(0);
-            yTo(0);
-        });
-    });
-}
-
-// 5. NAVBAR SCROLL EFFECT
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 80) { navbar.classList.add('scrolled'); }
-    else { navbar.classList.remove('scrolled'); }
-});
-
-// 6. MENU CATEGORY TAB SWITCHER
-const menuTabs = document.querySelectorAll('.menu-tab');
-const menuContents = document.querySelectorAll('.menu-content');
-
-menuTabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-        const target = tab.getAttribute('data-tab');
-        
-        menuTabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        
-        menuContents.forEach(content => {
-            content.classList.remove('active');
-            if (content.id === target) {
-                content.classList.add('active');
-                if (!prefersReducedMotion && typeof gsap !== 'undefined') {
-                    gsap.fromTo(content.children, 
-                        { opacity: 0, y: 20 }, 
-                        { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: 'power2.out' }
-                    );
-                }
-            }
-        });
-        
-        // Refresh ScrollTrigger positions after tab layout shifts
-        if (typeof ScrollTrigger !== 'undefined') {
-            setTimeout(() => ScrollTrigger.refresh(), 100);
-        }
-    });
-});
-
-// 7. COUNTER ANIMATION IN ABOUT SECTION
-const statNumbers = document.querySelectorAll('.stat-number');
-let counted = false;
-const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting && !counted) {
-            counted = true;
-            statNumbers.forEach(stat => {
-                const target = parseInt(stat.getAttribute('data-target'));
-                const duration = 2000;
-                const increment = target / (duration / 16);
-                let current = 0;
-                const updateCounter = () => {
-                    current += increment;
-                    if (current < target) {
-                        stat.textContent = Math.floor(current);
-                        requestAnimationFrame(updateCounter);
-                    } else {
-                        stat.textContent = target + (stat.getAttribute('data-target') > 50 ? '' : '+');
-                    }
-                };
-                updateCounter();
-            });
-        }
-    });
-}, { threshold: 0.5 });
-const statsSection = document.querySelector('.stats-grid');
-if (statsSection) statsObserver.observe(statsSection);
-
-// 8. TOAST NOTIFICATION SYSTEM
-const toastContainer = document.getElementById('toastContainer');
-function showToast(message) {
-    const toast = document.createElement('div');
-    toast.className = 'toast';
-    toast.innerHTML = '<i class="fas fa-check-circle"></i><span>' + message + '</span>';
-    toastContainer.appendChild(toast);
-    
-    requestAnimationFrame(() => toast.classList.add('show'));
-    
-    setTimeout(() => {
-        toast.classList.remove('show');
-        setTimeout(() => toast.remove(), 500);
-    }, 3500);
-}
-
-function addToOrder(itemName) {
-    showToast('"' + itemName + '" added to your tasting order.');
-}
-
-// 9. LIGHTBOX PREVIEW SYSTEM
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightboxImg');
-const lightboxClose = document.getElementById('lightboxClose');
-
-document.querySelectorAll('.gallery-item').forEach(item => {
-    item.addEventListener('click', () => {
-        const src = item.getAttribute('data-src');
-        lightboxImg.src = src;
-        lightbox.classList.add('active');
-        if (lenis) lenis.stop();
-        document.body.style.overflow = 'hidden';
-    });
-});
-
-function closeLightbox() {
-    lightbox.classList.remove('active');
-    if (lenis) lenis.start();
-    document.body.style.overflow = '';
-}
-
-lightboxClose.addEventListener('click', closeLightbox);
-lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
-
-// 10. FORM VALIDATION & SUBMISSION
-document.getElementById('contactForm').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const name = document.getElementById('name').value;
-    showToast('Thank you, ' + name + '. Your hospitality inquiry has been received.');
-    e.target.reset();
-});
-
-document.getElementById('newsletterForm').addEventListener('submit', (e) => {
-    e.preventDefault();
-    showToast('Welcome to The Velvet Bean Club. Your first dispatch arrives soon.');
-    e.target.reset();
-});
-
-// 11. MOBILE DRAWER MENU
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const navLinks = document.getElementById('navLinks');
-
-mobileMenuBtn.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    const icon = mobileMenuBtn.querySelector('i');
-    icon.classList.toggle('fa-bars');
-    icon.classList.toggle('fa-times');
-});
-
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        const icon = mobileMenuBtn.querySelector('i');
-        icon.classList.add('fa-bars');
-        icon.classList.remove('fa-times');
-    });
-});
-</script>
+    <!-- Modular Application Logic -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
